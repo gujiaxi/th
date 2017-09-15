@@ -32,13 +32,13 @@ instance Show TaskState where
 data Task = Task {state :: TaskState, name :: String} deriving (Eq)
 
 instance Show Task where
-	  show (Task taskState taskName) = show taskState ++ " " ++ taskName
+      show (Task taskState taskName) = show taskState ++ " " ++ taskName
 
 type TaskList = H.IntMap Task
 type TaskID   = H.Key
 
 instance Show TaskList where
-	  show = H.fold (++) "" . H.map (++ "\n") . H.map show
+      show = H.fold (++) "" . H.map (++ "\n") . H.map show
 
 parseTask :: String -> ExcMonad Task
 parseTask ('[':' ':']':' ':taskName) = return $ Task NotDone  taskName
